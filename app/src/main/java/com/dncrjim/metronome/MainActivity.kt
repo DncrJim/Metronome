@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
 
     var tempoList = mutableListOf<Int>(80, 100, 120, 140)
 
+        //Todo: make tempoList persistent across app and saves.
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,32 +31,34 @@ class MainActivity : AppCompatActivity() {
         newTempoButton.setOnClickListener {
             inputNewTempo()
         }
-
-
         //Todo: Recycler View for recently used tempos
+
+
     }
 
-    fun inputNewTempo() {
+    private fun inputNewTempo() {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = this.layoutInflater
-        val dialogView = inflater.inflate(R.layout.custom_dialog, null)
+        val dialogView = inflater.inflate(R.layout.new_tempo_dialog, null)
         dialogBuilder.setView(dialogView)
 
-        val editText = dialogView.findViewById<View>(R.id.`editTempoText`) as EditText
+        val editText = dialogView.findViewById<View>(R.id.editTempoText) as EditText
 
         dialogBuilder.setTitle("Add New Tempo")
         dialogBuilder.setPositiveButton("OK") {dialog, whichButton ->
 
-            var tempoAsInt = editText.text.toString().toInt()
+            val tempoAsInt = editText.text.toString().toInt()
             when (tempoAsInt) {
                 !in 36..300 -> Toast . makeText (this, "Error: Tempo must be between 36 and 300", Toast.LENGTH_LONG).show()
                 in tempoList -> {
                     val intent = Intent(this, TempoActivity::class.java)
+                    intent.putExtra("SEND_TEMPO",tempoAsInt)
                     startActivity(intent)
                 }
                 else -> {
                     tempoList.add(tempoAsInt)
                     val intent = Intent(this, TempoActivity::class.java)
+                    intent.putExtra("SEND_TEMPO",tempoAsInt)
                     startActivity(intent)
                 }
                 //also close dialog box?
