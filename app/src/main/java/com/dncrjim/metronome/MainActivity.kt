@@ -7,20 +7,24 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.startActivity
+import androidx.lifecycle.ViewModelProviders
+import com.dncrjim.metronome.AddOrEditActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import com.dncrjim.metronome.DatabaseHandler
 
 class MainActivity : AppCompatActivity() {
 
-    var tempoList = mutableListOf<Int>(80, 100, 120, 140)
+    //Todo: if tempoList null create default list of tempos?
+
+    var listTempos: List<Tempos> = ArrayList<Tempos>()
+
 
         //Todo: make tempoList persistent across app and saves.
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        //Todo: Insert data to make project only in Portrait (PizzaKeeper)
-
 
         //onclick for last tempo and new tempo
 
@@ -32,9 +36,19 @@ class MainActivity : AppCompatActivity() {
             inputNewTempo()
         }
         //Todo: Recycler View for recently used tempos
+        //Todo: Add Readme
 
 
     }
+
+    fun initDB() {
+        dbHandler = DatabaseHandler(this)
+        listTempos = (dbHandler as DatabaseHandler).tempo()
+        tempoRecyclerAdapter = TempoRecyclerAdapter(tempoList = listTempos, context = applicationContext)
+        (recyclerView as RecyclerView).adapter = taskRecyclerAdapter
+    }
+
+
 
     private fun inputNewTempo() {
         val dialogBuilder = AlertDialog.Builder(this)
@@ -70,5 +84,11 @@ class MainActivity : AppCompatActivity() {
         b.show()
         }
 
+    override fun onResume() {
+        super.onResume()
+        initDB()
     }
+}
+
+
 
