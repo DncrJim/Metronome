@@ -11,7 +11,7 @@ class TempoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tempo)
 
-        var currentTempo = intent.getIntExtra("SEND_TEMPO", 0)
+        val currentTempo:Int = intent.getIntExtra("currentTempo" , 0)
 
 
         val button = findViewById<Button>(R.id.returnButton)
