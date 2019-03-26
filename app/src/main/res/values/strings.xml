@@ -1,9 +1,3 @@
 <resources>
     <string name="app_name">Metronome</string>
-    <string name="tempo_text">Tempo:</string>
-    <string name="return_button_text">Return to Tempo Selection</string>
-    <string name="last_tempo_button_text">Go to Last Tempo</string>
-    <string name="new_tempo_button_text">New Tempo</string>
-    <string name="new_tempo_dialog_hint">Type Tempo</string>
-
 </resources>

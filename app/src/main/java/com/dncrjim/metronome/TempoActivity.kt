@@ -22,5 +22,3 @@ class TempoActivity : AppCompatActivity() {
     }
 
 }
-
-
