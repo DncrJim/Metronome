@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 
 // this is the model for a tempo object
 
-@Entity(tableName = "tempos")
+@Entity(tableName = "tempoList")
 
-data class Tempos (
+data class Tempo (
         @PrimaryKey(autoGenerate = true)
         val id: Int,
         val tempo: Int,
@@ -16,7 +16,7 @@ data class Tempos (
 
 
 
-//class Tempos(@ColumnInfo(name = "tempo")
+//class Tempo(@ColumnInfo(name = "tempo")
 //                  var tempo: Int = 0,
 //                  @ColumnInfo(name = "frequency")
 //                  var frequency: Int = 0

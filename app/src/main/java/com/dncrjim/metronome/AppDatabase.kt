@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = arrayOf(Tempos::class), version = 1)
+@Database(entities = arrayOf(tempoList::class), version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun tempoDao(): TempoDao
@@ -20,7 +20,7 @@ abstract class AppDatabase : RoomDatabase() {
                 synchronized(AppDatabase::class) {
                     //Todo: Change inMemoryDatabaseBuilder() to databaseBuilder()
                     //Todo: Remove Main Thread Queries?
-                    //APPDATABASE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase::class.java, "Tempos.db").allowMainThreadQueries().build()
+                    //APPDATABASE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase::class.java, "Tempo.db").allowMainThreadQueries().build()
                     APPDATABASE = Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase::class.java).allowMainThreadQueries().build()
                 }
             }

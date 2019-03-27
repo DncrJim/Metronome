@@ -4,34 +4,34 @@ import androidx.room.*
 
 @Dao
 interface TempoDao {
-    @Query("SELECT * from tempos")
-    fun getAllTempos(): List<Tempos>
+    @Query("SELECT * from tempoList")
+    fun getAllTempos(): List<Tempo>
 
-    @Query("DELETE FROM tempos")
+    @Query("DELETE FROM tempoList")
     fun deleteAllTempos()
 
 
-    @Query("select * from tempos where id = :id")
-    fun getTempoById(id: Int): Tempos
+    @Query("select * from tempoList where id = :id")
+    fun getTempoById(id: Int): Tempo
 
-    @Query("DELETE from tempos where id = :id")
-    fun deleteTempoById(id: Int): Tempos
+    @Query("DELETE from tempoList where id = :id")
+    fun deleteTempoById(id: Int): Tempo
 
 
 
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTempo(tempos: Tempos)
+    fun insertTempo(tempo: Tempo)
 
-//    @Query("DELETE from tempos")
+//    @Query("DELETE from tempoList")
 //    fun deleteTempos()
 //
 //    @Update
-//    fun updateTempo(tempos: Tempos)
+//    fun updateTempo(tempoList: Tempo)
 //
 //
-//    @Query("UPDATE Tempos SET tempo = :tempo, frequency = :frequency where id = :id")
+//    @Query("UPDATE Tempo SET tempo = :tempo, frequency = :frequency where id = :id")
 //    fun updateTempo(tempo: Int, frequency: Int, id : Long?)
 
 
