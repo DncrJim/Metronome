@@ -1,6 +1,7 @@
 package com.dncrjim.metronome
 
 import android.app.Application
+import androidx.room.Room
 
 //temporarily create database for testing
 
@@ -15,6 +16,13 @@ val tempoList = mutableListOf (
         Tempo(7,140,0),
         Tempo(8,150,0)
 )
+
+//build database
+
+
+
+
+
 
 class App : Application() {
 

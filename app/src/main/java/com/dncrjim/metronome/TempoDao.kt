@@ -17,12 +17,12 @@ interface TempoDao {
     @Query("DELETE from tempoList where id = :id")
     fun deleteTempoById(id: Int): Tempo
 
-
-
-
-
+    // this has an issue if a tempo from the middle is deleted
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertTempo(tempo: Tempo)
+
+
+
 
 //    @Query("DELETE from tempoList")
 //    fun deleteTempos()

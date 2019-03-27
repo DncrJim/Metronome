@@ -8,17 +8,20 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var handler: Handler
-
-    // put
-    //var tempoList = mutableListOf<Int>(80, 100, 120, 140)
+    lateinit var db: TempoDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //build database
+        //Todo: Trade these after testing
+        db = Room.inMemoryDatabaseBuilder(this, TempoDatabase::class.java).allowMainThreadQueries().build()
+        //db = Room.databaseBuilder(this, TempoDatabase::class.java, "TempoDatabase").build()
 
         //onclick for last tempo and new tempo
         lastTempoButton.setOnClickListener {
@@ -33,6 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //popup to add new tempo
+
     fun inputNewTempo() {
         val dialogBuilder = AlertDialog.Builder(this)
         val inflater = this.layoutInflater
@@ -52,6 +56,9 @@ class MainActivity : AppCompatActivity() {
 
                     //add new tempo to tempoList. can't generate own ID yet
                     tempoList.add(Tempo(nextId(), tempoAsInt, 0))
+
+                    //Possible new version that adds
+                    db.tempoDao().insertTempo(Tempo(nextId(), tempoAsInt, 0))
 
                     //move to other activity and send new tempo
                     val intent = Intent(this, TempoActivity::class.java)
